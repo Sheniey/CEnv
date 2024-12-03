@@ -36,7 +36,7 @@ Puedes Aportar tu *Granito de Arena* de las siguientes maneras:
 1. Puedes [comprarme un Cafesito](https://www.paypal.com) :coffee: por $2 :dollar: USD...
 2. Contribuye con tus conocimientos al Codigo para añadir más funciones e idiomas nuevos...
 3. Me haría mucha ilusión que distribuyeras y/o esparcieras CEnv. Solo di que es mío :smiley:...
-4. Además, ¿podrias apoyar mí [Canal de YouTube](htttps://www.youtube.com/sheñey) o [Repositorio de GitHub](https://www.github.com/sheniey)?
+4. Además, ¿podrias apoyar mí [Canal de YouTube](htttps://www.youtube.com/@SheñeyBy2010) o [Repositorio de GitHub](https://www.github.com/Sheniey)?
 ---
 
 ## [*] Important Notes:
@@ -101,7 +101,7 @@ The Documentation's in the file [DOCS.md](./DOCS.md), here is the Documentation 
 ---
 
 ## [*] Download:
-> [ZIP Download](https://www.github.com/sheniey) / [ZIP Method](#zip-method) / [Git Method](#git-method)
+> [ZIP Download](https://github.com/Sheniey/CEnv/archive/8fb5359b4e252314258e6650cf210a9de4c52f09.zip) / [ZIP Method](#zip-method) / [Git Method](#git-method)
 #### ZIP Method:
 
 #### Git Method:
