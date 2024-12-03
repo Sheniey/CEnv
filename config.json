@@ -1,0 +1,54 @@
+{
+    "db": {
+        "path": "./envs.json",
+        "body": "{}",
+        "ascii": false,
+        "enlist": true,
+        "indent": 2,
+        "theme": "monokai",
+        "background": "black"
+    },
+    "readme": "",
+    "license": {
+        "MiT": "",
+        "GPLv2": ""
+    },
+    "version": "0.1.0",
+    "idiom": "en",
+    "lang": ["en", "es"],
+    "en": {
+        "error": {
+            "FileIsVoidWarning": "\n [yellow bold][*] DB Warning:[/] | JSON File is Empty!! |... \n",
+            "FileNotFoundError": "\n [red bold][!] DB Error:[/] | JSON File not Found. Creating a New One... |... \n",
+            "JSONDecodeError": "\n [yellow bold][*] DB Warning:[/] | JSON File is Empty or Corrupted. Resetting DB... |... \n",
+            "KeyboardInterrupt": "\n [red bold][!] Operation Error: | Operation wasn't Completed! |... \n",
+            "Raised": ["\n [red bold][!] Raised Error:[/] |", "|... \n"]
+        },
+        "menu-msg": "\n [green bold][+][/] Choose the Number Option: ",
+        "menu-invalidOption": " [-] Invalid Option. Try Again... ",
+        "main-options": ["Exit", "Credits", "Config", "New"],
+        "config-options": ["Language"],
+        "area-advice": [" [-] The Program Area |", "| isn't Exist... "],
+        "lang-advice":  [" [-] The Program Lenguaje |", "| isn't Exist... "],
+        "lang-msg": " What Will You Do?",
+        "lang-options": ["Run", "View"]
+    },
+    "es": {
+        "error": {
+            "FileIsVoidWarning": "\n [yellow bold][*] Advertencia BD:[/] | Archivo JSON está Vacio!! |... \n", 
+            "FileNotFoundError": "\n [red bold][!] Error BD:[/] | Archivo JSON no Encontrado. Creando uno Nuevo... |... \n",
+            "JSONDecodeError": "\n [yellow bold][*] Advertencia BD:[/] | Archivo JSON está Vacio o Corrupt. Reiniciando BD... |... \n",
+            "KeyboardInterrupt": "\n [red bold][!] Error Operación:[/] | Operación no fue Completada! |... \n",
+            "Raised": ["\n [red bold][!] Error Ocurrido:[/] |", "|... \n"]
+        },
+        "menu-msg": "\n [+] Escoje el Numero de Opción: ",
+        "menu-invalidOption": " [-] Opción Invalida. Intenta de Nuevo... ",
+        "main-options": ["Salir", "Creditos", "Configuración", "Nuevo"],
+        "config-options": ["Idioma"],
+        "newenv-options": ["Create", "Import", "Export"],
+        "area-advice": [" [-] El Area de Programación |", "| no Existe... "],
+        "lang-advice":  [" [-] El Lenguaje de Programación |", "| no Existe... "],
+        "lang-msg": " ¿Qué Haras?",
+        "lang-options": ["Ejecutar", "Ver"]
+    }
+}

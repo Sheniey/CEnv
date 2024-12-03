@@ -1,0 +1,57 @@
+{
+    "Web Develop": {
+        "Web Page": {
+            "Author": "Sheñey",
+            "Version": "1.0",
+            "Language": ["HTML5", "CSS", "JavaScript"],
+            "Description": "Environment to Create a Page Web with HTML, CSS & JavaScript.",
+            "Environment": ["Chromium", "Mozilla"],
+            "Dirs": [
+                "src",
+                "src/icons",
+                "src/imgs",
+                "src/vids",
+                "src/fonts"
+            ],
+            "Files": {
+                "index.html": "\n<!DOCTYPE html>\n\n<html lang=\"en\">\n\t<head>\n\t\t<meta charset=\"UTF-8\">\n\t\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n\n\t\t<!-- Import Favicon -->\n\t\t<link rel=\"icon\" type=\"image/png\" href=\"./src/favicon.png\">\n\n\t\t<!-- Import Styles -->\n\t\t<link rel=\"stylesheet\" href=\"./style.css\">\n\n\t\t<title>Sheñey</title> <!-- Title of Page -->\n\t</head>\n\n\t<body>\n\t\t<header class=\"container header-container\">\n\t\t\t<img src=\"./src/logo.png\" alt=\"image-error: Image don't Load [404]\">\n\t\t\t<nav class=\"nav-container\">\n\t\t\t\t<a href=\"#\" class=\"nav-item\">Home</a>\n\t\t\t\t<div class=\"nav-dropdown\">\n\t\t\t\t\t<a href=\"#\" class=\"nav-item\">Products</a>\n\t\t\t\t</div>\n\t\t\t\t<a href=\"#aboutme\" class=\"nav-item\">About Me</a>\n\t\t\t\t<a href=\"#\" class=\"nav-item\">Contact Us</a>\n\t\t\t</nav>\n\t\t</header>\n\n\t\t<main class=\"container main-container bg-default\">\n\t\t\t<section class=\"about\">\n\t\t\t\t<article id=\"aboutme\">\n\t\t\t\t\t<p>I'm a Programmer and Designer of Software, Web Develop, Scripts and More.</p>\n\t\t\t\t</article>\n\t\t\t\t<article id=\"aboutus\">\n\t\t\t\t\t<p>We're a Specialized Company in our Area.</p>\n\t\t\t\t</article>\n\t\t\t</section>\n\t\t</main>\n\n\t\t<footer class=\"container footer-container\">\n\t\t</footer>\n\t</body>\n</html>\n",
+                "style.css": "",
+                "script.js": "",
+                "README.md": null,
+                "LICENSE.md": null,
+                "src/icons/favicon.ico": ""
+            },
+            "Dependencies": ["Linux-Kernel"]
+        }
+    },
+    "Script": {
+        "Bash": {
+            "Author": "Sheñey",
+            "Version": "1.0",
+            "Language": ["Bash"],
+            "Description": "Environment with Bash [Linux] to Create a Script.",
+            "Environment": ["Linux Kernel", "OSx", "Termux"],
+            "Dirs": [],
+            "Files": {
+                "script.sh": "",
+                "README.md": "",
+                "LICENSE.md": "GPLv2"
+            },
+            "Dependencies": []
+        },
+        "Python": {
+            "Author": "Sheñey",
+            "Version": "1.0",
+            "Lenguaje": ["Python3"],
+            "Description": "Environment with Python to Create a Script.",
+            "Environment": ["Windows NT", "Linux Kernel", "OSx", "Termux"],
+            "Dirs": [],
+            "Files": {
+                "main.py": "\ndef main() -> None:\n\t'''`main function`'''\n\n\treturn\nif __name__ == '__main__':\n\tmain()",
+                "docs/README.md": "## Hello World Script [Python]\n[Store](http://www.amazon.mx)",
+                "docs/LICENSE.md": "GPLv2"
+            },
+            "Dependencies": ["Python3"]
+        }
+    }
+}
