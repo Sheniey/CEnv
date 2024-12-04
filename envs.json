@@ -31,13 +31,13 @@
             "Language": ["Bash"],
             "Description": "Environment with Bash [Linux] to Create a Script.",
             "Environment": ["Linux Kernel", "OSx", "Termux"],
-            "Dirs": [],
+            "Dirs": null,
             "Files": {
                 "script.sh": "",
                 "README.md": "",
                 "LICENSE.md": "GPLv2"
             },
-            "Dependencies": []
+            "Dependencies": null
         },
         "Python": {
             "Author": "Sheñey",
@@ -45,7 +45,7 @@
             "Lenguaje": ["Python3"],
             "Description": "Environment with Python to Create a Script.",
             "Environment": ["Windows NT", "Linux Kernel", "OSx", "Termux"],
-            "Dirs": [],
+            "Dirs": null,
             "Files": {
                 "main.py": "\ndef main() -> None:\n\t'''`main function`'''\n\n\treturn\nif __name__ == '__main__':\n\tmain()",
                 "docs/README.md": "## Hello World Script [Python]\n[Store](http://www.amazon.mx)",

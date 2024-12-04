@@ -7,7 +7,8 @@
 > **Update:** 02/12/2024
 
 ---
-[About CEnv](#cenv) | [**About Me**](#me) | [Requitements](#system-requitements) | [License](#license) | [**Download**]() | []()
+
+[About CEnv](#cenv "Goto |About This > CEnv|") | [**About Me**](#me "Goto |About This > Me|") | [Requitements](#system-requitements "Goto |Important Notes > System Requitements|") | [License](#license "Goto |Important Notes > License|" ) | [**Download**](#-download "Goto |Download|")
 
 ---
 
@@ -33,10 +34,11 @@ Si deseas una Edición más Light o Pro...
 #### Me:
 **I am *Sheñey*** un chico Mexicano de 14 años apasionado por las *Ciencias Computacionales*; si te gustaria apoyarme, pues estas de suerte *Creo...:
 Puedes Aportar tu *Granito de Arena* de las siguientes maneras:
-1. Puedes [comprarme un Cafesito](https://www.paypal.com) :coffee: por $2 :dollar: USD...
+1. Puedes [comprarme un Cafesito](https://www.paypal.com "Support me in PayPal") :coffee: por $2 :dollar: USD...
 2. Contribuye con tus conocimientos al Codigo para añadir más funciones e idiomas nuevos...
 3. Me haría mucha ilusión que distribuyeras y/o esparcieras CEnv. Solo di que es mío :smiley:...
-4. Además, ¿podrias apoyar mí [Canal de YouTube](htttps://www.youtube.com/@SheñeyBy2010) o [Repositorio de GitHub](https://www.github.com/Sheniey)?
+4. Además, ¿podrias apoyar mí [Canal de YouTube](htttps://www.youtube.com/@SheñeyBy2010 "Follow in YouTube |@SheñeyBy2010|") o [Repositorio de GitHub](https://www.github.com/Sheniey/CEnv "Follow in GitHub |Sheñey|")?
+
 ---
 
 ## [*] Important Notes:
@@ -90,38 +92,20 @@ Puedes Aportar tu *Granito de Arena* de las siguientes maneras:
     </tbody>
 </table>
 
-> ***CEnv*** Also uses ***Python** Modules*: [rich](https://rich.readthedocs.io/en/stable/introduction.html) & [curses](https://docs.python.org/3/howto/curses.html)...
+> ***CEnv*** Also uses ***Python** Modules*: [rich](https://rich.readthedocs.io/en/stable/introduction.html "Install Python3-Rich") & [curses](https://docs.python.org/3/howto/curses.html "Install Python3-Curses")...
 
 #### License:
-Con el objetivo de que ***CEnv*** pertenesca a algun **Administrador de Paquetes** cómo *Debian* (apt), *Arch* (pacman), Ubuntu (idk) o Windows (Chocollatey), he decidido adoptar una ***Politica de Uso*** parecida, si no igual, a la *Licensia **GPLv3*** del *Open Source System* **GNU/Linux**.
+Con el objetivo de que ***CEnv*** pertenesca a algun **Administrador de Paquetes** cómo *Debian* (apt), *Arch* (pacman), Ubuntu (idk) o Windows (Chocollatey), he decidido adoptar una ***Politica de Uso*** parecida, si no igual, a la *Licencia **GPLv3*** del *Open Source System* **GNU/Linux**.
 
 #### Documentation:
-The Documentation's in the file [DOCS.md](./DOCS.md), here is the Documentation :book: and in the file [CHANGELOG.md](./CHANGELOG.md) is the log of all Updates about ***CEnv CE***.
+The Documentation's in the file [DOCS.md](./DOCS.md "Goto the DOCUMENTATION"), here is the Documentation :book: and in the file [CHANGELOG.md](./CHANGELOG.md "Goto the CHANGELOG") is the log of all Updates about ***CEnv CE***.
 
 ---
 
 ## [*] Download:
-> [ZIP Download](https://github.com/Sheniey/CEnv/archive/8fb5359b4e252314258e6650cf210a9de4c52f09.zip) / [ZIP Method](#zip-method) / [Git Method](#git-method)
+> [ZIP Download](https://github.com/Sheniey/CEnv/archive/8fb5359b4e252314258e6650cf210a9de4c52f09.zip "Download the GitHub Reprository") / [ZIP Method](#zip-method "Goto |Download > ZIP Method|") / [Git Method](#git-method "Goto |Download > Git Method|")
 #### ZIP Method:
+![ZIP Method](./img/zip-method-img1.png "Main Image from GitHub Repository")
 
 #### Git Method:
-1. Console: 
-```python
-def draw_menu(options: list[str], msg: str = '', *, listing: bool = True) -> str: # create a non-interactive Menu
-    print(f'\n                    {msg}') # show the Message
-    for i, op in enumerate(options):
-        print(f' [{i + 1}] {op}') if listing else print(f' [*] {op}')
-    
-    opt = int(input(config[IDIOM]['menu-msg'])) - 1
-    if 0 <= opt < len(options):
-        return options[opt]
-    else:
-        clear()
-        input(config[IDIOM]['menu-invalidOption'])
-        clear()
-        return draw_menu(options, msg, listing=listing)
-```
 
-```console
-$ git clone "https://github.com/sheniey/CEnv.git"
-```

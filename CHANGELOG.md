@@ -9,32 +9,33 @@
 Todos los cambios importantes de este proyecto serán documentados en este archivo.
 
 Follow Me:
-1. YouTube: [@Sheñey](https://www.youtube.com/@She%C3%B1eyBy2010)
-2. GitHub: [Sheñey](https://www.github.com/Sheniey)
-3. PayPal: [Sheñey](https://www.paypal.com)
+1. YouTube: [@Sheñey](https://www.youtube.com/@She%C3%B1eyBy2010 "Follow in YouTube |@SheñeyBy2010|")
+2. GitHub: [Sheñey](https://www.github.com/Sheniey "Follow in GitHub |Sheñey|")
+3. PayPal: [Sheñey](https://www.paypal.com "Support me in PayPal")
 
 ---
 
-[**Last Update**](#prerelease-020---29112024) | [**Unreleased**](#unreleased-100---31112024) | [Released](#released-100---7112024) | [Prerelease](#prerelease-000---29112024)
+[**Last Update**](#prerelease-020---29112024 "Goto the Last Update") | [**Unreleased**](#unreleased-100---31112024 "Goto |Unreleased|") | [Released](#released-100---7112024 "Goto the Medium Update") | [Prerelease](#prerelease-000---29112024 "Goto |Prerelease|")
 
 ---
 
 ## {Unreleased}: [0.3.0] - 03/12/2024
 #### Add:
 - Se planea añadir un *Actualizador* [updater.py] que cheque el estado del **Repositorio** y te muestre las *Actualizaciones Disponibles* en el apartado de **Configuración** del menu principal [cenv.py].
-
----
-
-## {Released}: [1.0.0] - 07/12/2024
+- Muy Posiblemente se vendra la *Actualización **Colors Update***, una Actualización que trae *Colores* & *Estilos* a ***CEnv CE***
 
 ---
 
 ## {Prerelease}: [0.0.0] - 28/11/2024
 > **Primera Versión** del proyecto con los archivos y directorios base, asi como los *simientos* y *caracteristicas* minimas.
 
+### 0.2.2: "Beta Lunched" - Snapshot 24w49a
+#### Fixed:
+- Algunos Errores & Problemas con ***Curses*** han sidos solucionados y *Posiblemente* se **Terminara** Descartando *curses* para la ***Relesed Update***. 
+
 ### 0.2.1: "Beta Lunched" - Snapshot 24w49a
 #### Added:
-- Adios *Opciones*, hola **Menu Interactivo**; ya está la funcion del menu interactivo con ***curses*** para ***CEnv CE***.
+- Adios *Opciones*, hola **Menu Interactivo**; ya está la Funcion del Menu Interactivo con ***Curses*** para ***CEnv CE***.
 - Este *documento*. Lugar donde se encuentran el **Registro de las Actualizaciónes** es redactado por **Sheñey**.
 
 ### 0.2.0: "Beta Lunched" - Snapshot 24w49a

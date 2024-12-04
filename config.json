@@ -8,47 +8,65 @@
         "theme": "monokai",
         "background": "black"
     },
-    "readme": "",
-    "license": {
+    "licenses": {
         "MiT": "",
-        "GPLv2": ""
+        "GPLv3": ""
     },
+    "lang": ["en", "es"],
     "version": "0.1.0",
     "idiom": "en",
-    "lang": ["en", "es"],
+    "path": "",
+    "readmeDefault": "",
+    "licenseDefault": "",
+    "changelog": true,
+    "docs": true,
     "en": {
         "error": {
-            "FileIsVoidWarning": "\n [yellow bold][*] DB Warning:[/] | JSON File is Empty!! |... \n",
-            "FileNotFoundError": "\n [red bold][!] DB Error:[/] | JSON File not Found. Creating a New One... |... \n",
-            "JSONDecodeError": "\n [yellow bold][*] DB Warning:[/] | JSON File is Empty or Corrupted. Resetting DB... |... \n",
-            "KeyboardInterrupt": "\n [red bold][!] Operation Error: | Operation wasn't Completed! |... \n",
-            "Raised": ["\n [red bold][!] Raised Error:[/] |", "|... \n"]
+            "FileIsVoidWarning": "\n [yellow bold italic][*] DB Warning: |[/] [yellow dim italic]JSON File is Empty!![/] [yellow bold italic]|[/]... \n",
+            "FileNotFoundError": "\n [red bold underline][!] DB Error: |[/] [red italic dim]JSON File not Found. Creating a New One...[/] [red bold underline]|[/]... \n",
+            "JSONDecodeError": "\n [yellow bold italic][*] DB Warning: |[/] [yellow dim]JSON File is Empty or Corrupted.[/] [yellow bold italic]Resetting DB...[/] \n",
+            "KeyboardInterrupt": "\n [red bold underline][!] Operation Error: |[/] [red strike italic]Operation wasn't Completed![/] [red bold underline]|[/]... \n",
+            "Raised": ["\n [red bold italic][!] Raised Error: |[/][red dim italic]", "[/] [red bold italic]|[/]... \n"]
         },
-        "menu-msg": "\n [green bold][+][/] Choose the Number Option: ",
-        "menu-invalidOption": " [-] Invalid Option. Try Again... ",
-        "main-options": ["Exit", "Credits", "Config", "New"],
-        "config-options": ["Language"],
-        "area-advice": [" [-] The Program Area |", "| isn't Exist... "],
-        "lang-advice":  [" [-] The Program Lenguaje |", "| isn't Exist... "],
-        "lang-msg": " What Will You Do?",
-        "lang-options": ["Run", "View"]
+        "menu-msg": "\n [green bold underline][+][/] [italic dim]Choose the Number Option:[/]",
+        "menu-invalidOption": " [yellow bold italic][-][/] [yellow dim italic]Invalid Option.[/] [yellow bold]Try Again...[/] ",
+        "main-options": [
+            "[blue italic underline]Exit[/]", 
+            "[cyan italic]Credits[/]", 
+            "[magenta dim italic]Config[/]", 
+            "[green bold]New[/]"
+        ],
+        "config-options": ["[blue bold]Language[/]"],
+        "area-advice": [" [yellow bold italic][-][/] The Program Area [red bold italic]|[/]", "[red bold italic]|[/] [dim]isn't Exist...[/] "],
+        "lang-advice": [" [yellow bold italic][-][/] The Program Lenguaje [red bold italic]|[/]", "[red bold italic]|[/] [dim]isn't Exist...[/] "],
+        "lang-msg": " [green bold underline italic]What Will You Do?[/]",
+        "lang-options": ["[blue underline italic]Run[/]", "[cyan italic]View[/]"]
     },
     "es": {
         "error": {
-            "FileIsVoidWarning": "\n [yellow bold][*] Advertencia BD:[/] | Archivo JSON está Vacio!! |... \n", 
-            "FileNotFoundError": "\n [red bold][!] Error BD:[/] | Archivo JSON no Encontrado. Creando uno Nuevo... |... \n",
-            "JSONDecodeError": "\n [yellow bold][*] Advertencia BD:[/] | Archivo JSON está Vacio o Corrupt. Reiniciando BD... |... \n",
-            "KeyboardInterrupt": "\n [red bold][!] Error Operación:[/] | Operación no fue Completada! |... \n",
-            "Raised": ["\n [red bold][!] Error Ocurrido:[/] |", "|... \n"]
+            "FileIsVoidWarning": "\n [yellow bold italic][*] Advertencia BD:[/] | [yellow dim]Archivo JSON está Vacío!![/] [yellow bold italic]|...[/] \n",
+            "FileNotFoundError": "\n [red bold underline][!] Error BD:[/] | [red italic]Archivo JSON no Encontrado.[/] [dim italic]Creando uno Nuevo...[/] [red bold underline]|...[/] \n",
+            "JSONDecodeError": "\n [yellow bold italic][*] Advertencia BD:[/] | [yellow italic dim]Archivo JSON está Vacío o Corrupto.[/] [yellow bold italic]Reiniciando BD...[/] \n",
+            "KeyboardInterrupt": "\n [red bold underline][!] Error Operación:[/] | [red strike italic]Operación no fue Completada![/] [red bold underline]|...[/] \n",
+            "Raised": ["\n [red bold italic][!] Error Ocurrido:[/] |[red dim italic]", "[red bold italic]|[/]... \n"]
         },
-        "menu-msg": "\n [+] Escoje el Numero de Opción: ",
-        "menu-invalidOption": " [-] Opción Invalida. Intenta de Nuevo... ",
-        "main-options": ["Salir", "Creditos", "Configuración", "Nuevo"],
-        "config-options": ["Idioma"],
-        "newenv-options": ["Create", "Import", "Export"],
-        "area-advice": [" [-] El Area de Programación |", "| no Existe... "],
-        "lang-advice":  [" [-] El Lenguaje de Programación |", "| no Existe... "],
-        "lang-msg": " ¿Qué Haras?",
-        "lang-options": ["Ejecutar", "Ver"]
+        "menu-msg": "\n [green bold underline][+][/] [italic dim]Escoje el Número de Opción:[/]",
+        "menu-invalidOption": " [yellow bold italic][-][/] [yellow italic dim]Opción Inválida.[/] [yellow bold italic]Intenta de Nuevo...[/] ",
+        "main-options": [
+            "[blue underline italic]Salir[/]", 
+            "[cyan italic]Créditos[/]", 
+            "[magenta dim italic]Configuración[/]", 
+            "[green bold]Nuevo[/]"
+        ],
+        "config-options": ["[blue bold italic]Idioma[/]"],
+        "newenv-options": [
+            "[green underline italic]Create[/]", 
+            "[blue italic]Import[/]", 
+            "[yellow italic dim]Export[/]"
+        ],
+        "area-advice": [" [yellow bold italic][-][/] El Área de Programación [red bold italic]|[/]", "[red bold italic]|[/] [dim]no Existe...[/] "],
+        "lang-advice": [" [yellow bold italic][-][/] El Lenguaje de Programación [red bold italic]|[/]", "[red bold italic]|[/] [dim]no Existe...[/] "],
+        "lang-msg": " [green bold underline italic]¿Qué Harás?[/]",
+        "lang-options": ["[blue underline italic]Ejecutar[/]", "[cyan italic]Ver[/]"]
     }
 }

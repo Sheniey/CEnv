@@ -1,12 +1,10 @@
 
 # Imports:      IMPORTS
-import curses
-import json
 from rich.console import Console
 from rich.syntax import Syntax
 from os import system, name as OS, makedirs as mkdir
 from typing import Final as Const
-import sys
+import curses, sys, json
 from shutil import copy as backup
 
 # Definition:   INIT MODULES
@@ -18,6 +16,7 @@ stdin = input # set the func Stdin as print()
 print = console.print # set the func Print as console.print()
 input = console.input # set the func Input as console.input()
 clear = console.clear # set the func Clear as console.clear()
+
 
 # Definition:   CONST VARIABLES
 CONFIG_PATH: Const[str] = './config.json'
@@ -41,13 +40,14 @@ with open(CONFIG_PATH, 'r', encoding='utf-8') as f: # get the JSON Config File
             else: # Config Backup File load
                 print(f'\n [*] Config Backup: | Config Backup File is Loading... |... ')
                 config = configBackup
+                system(f'cp {CONFIG_BACKUP_PATH} {CONFIG_PATH}')
                 input('\n [+] Completed!! ')
                 clear()
 
 IDIOM: str = config.get('idiom', 'en') # get the Idiom
 
 # Definition:   FUNCTIONS
-def draw_menu(stdscr, options: list[str], msg: str, *, medium: bool = False, listing: bool = True) -> str:
+def draw_menu(stdscr, options: list[str], msg: str = '', *, medium: bool = False, listing: bool = True) -> str:
     curses.curs_set(0) # init the chars of Curses
     stdscr.keypad(True) # idk :v
     aim: int = 0 # set the Pointer at 0
@@ -70,19 +70,16 @@ def draw_menu(stdscr, options: list[str], msg: str, *, medium: bool = False, lis
         key = stdscr.getch() # idk :v
 
         # Move|Set the value of option with the Pointer
-        if key in [curses.KEY_UP, chr(0x2191), 119]: # press W|UP?
-            if aim > 0:
-                aim -= 1 # goto the Up Option
-            else:
-                aim += len(options) - 1 # goto the Lowest Option
+        if key in [curses.KEY_UP, 119]: # press W|UP?
+            aim = (aim - 1) % len(options) # move the Pointer
 
-        elif key in [curses.KEY_DOWN, chr(0x2193), curses.KEY_BACKSPACE, chr(0x8), 115]: # press S|SPACE|DOWN?
+        elif key in [curses.KEY_DOWN, curses.KEY_BACKSPACE, 115]: # press S|SPACE|DOWN?
             if aim < len(options) - 1:
                 aim += 1 # goto the Down Option
             else:
                 aim -= len(options) - 1 # goto the Highest Option
 
-        elif key in [curses.KEY_ENTER, ord('\n'), curses.KEY_BTAB, chr(0x9)]: # press ENTER|TAB?
+        elif key in [curses.KEY_ENTER, ord('\n'), curses.KEY_BTAB]: # press ENTER|TAB?
             return options[aim]
         
         else: # show the error for Invalid Option
@@ -136,7 +133,6 @@ def main() -> None: # Main Function
         if not db or db == {}: # see if the DB file is Empty
             print(config[IDIOM]['error']['FileIsVoidWarning'])
             sys.close(2)
-    
     section: list[str] = config[IDIOM]['main-options'] + list(db.keys()) # show the Main menu
     option: str = draw_menu(section)
     
@@ -201,6 +197,7 @@ def main() -> None: # Main Function
         environment(db, option)
         input()
 
+    raise KeyboardInterrupt(' Hi')
     clear()
     return
 
