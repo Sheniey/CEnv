@@ -1,11 +1,15 @@
 
-# Imports:      IMPORTS
+# Imports:      MODULE IMPORTS
+import questionary as quest
 from rich.console import Console
 from rich.syntax import Syntax
-from os import system, name as OS, makedirs as mkdir
+from os import system, makedirs as mkdir
 from typing import Final as Const
-import curses, sys, json
-from shutil import copy as backup
+import sys, json, csv
+from shutil import copy as backup, get_terminal_size as termsize
+
+# Imports:      LOCAL IMPORTS
+# Coming Soon
 
 # Definition:   INIT MODULES
 console: Console = Console() # init the Console
@@ -17,26 +21,26 @@ print = console.print # set the func Print as console.print()
 input = console.input # set the func Input as console.input()
 clear = console.clear # set the func Clear as console.clear()
 
-
 # Definition:   CONST VARIABLES
-CONFIG_PATH: Const[str] = './config.json'
-CONFIG_BACKUP_PATH: Const[str] = './.config_backup.json'
+CONFIG_PATH: Const[str] = './src/config.json'
+CONFIG_BACKUP_PATH: Const[str] = './src/backup/.config_backup.json'
+LIKS_PATH: Const[str] = './src/content/links.csv'
 backup(CONFIG_PATH, CONFIG_BACKUP_PATH) # create a Config Backup
 with open(CONFIG_PATH, 'r', encoding='utf-8') as f: # get the JSON Config File
     config = json.load(f)
     if not config or config == {}: # see if the Config File is Empty
         print(f'\n [!] Config Error: | JSON File is Empty!! |... ')
         print(' [*] Using the Config Backup File... ')
-        left: bool = input(' [?] Continue... [Y/n]: ').upper()
+        left: bool = quest.confirm(' Continue... ', qmark='[?]').ask()
         clear()
-        if left == 'N':
+        if left:
             sys.exit(2)
         with open(CONFIG_BACKUP_PATH, 'r', encoding='utf-8') as backupFile:
             configBackup = json.load(backupFile)
             if not configBackup or configBackup == {}: # see if the Config Backup File is Empty
                 print(f"\n [!] Config Error: | Backup JSON File is Empty!! I'm sorry. |... ")
                 print('     - See the Documentation [DOCS.md] at | https://www.github.com/DOCS.md |... \n')
-                sys.close(2)
+                sys.exit(2)
             else: # Config Backup File load
                 print(f'\n [*] Config Backup: | Config Backup File is Loading... |... ')
                 config = configBackup
@@ -44,102 +48,98 @@ with open(CONFIG_PATH, 'r', encoding='utf-8') as f: # get the JSON Config File
                 input('\n [+] Completed!! ')
                 clear()
 
+with open(config['language']['path'], 'r', encoding='utf-8') as f: # get the JSON Lang File
+    lang = json.load(f)
+    if not lang or lang == {}: # see if the JSON File is Empty
+        sys.exit(2)
+        clear()
+
 IDIOM: str = config.get('idiom', 'en') # get the Idiom
 
+
 # Definition:   FUNCTIONS
-def draw_menu(stdscr, options: list[str], msg: str = '', *, medium: bool = False, listing: bool = True) -> str:
-    curses.curs_set(0) # init the chars of Curses
-    stdscr.keypad(True) # idk :v
-    aim: int = 0 # set the Pointer at 0
+def config_panel() -> None:
+    """ ::Configuration Panel Part:: """
     
-    while True:
-        h, w = stdscr.getmaxyx() # get the Height and Width of the Console
-        stdscr.addstr(1, w // 2 - len(msg) // 2, msg) # show the Message
+    clear()
+    options: list[str] = lang[IDIOM]['configOptions']
+    opt: str = quest.select('', '', options).ask() # show Config Options
+    clear()
+    if opt == options[0]: # change the Language
+        idiome: str = quest.select('', config['language']['lang']).ask() # get the available Languages
+        IDIOM = idiome
 
-        for i, option in enumerate(options): # show the Options
-            x = w // 2 - len(option) // 2 if medium else 1
-            y = h // 2 - len(options) // 2 + i + 1
-            if i == aim:
-                stdscr.attron(curses.A_REVERSE)
-                stdscr.addstr(y, x, f' [{i + 1}] {option}' if listing else f' {option}')
-                stdscr.attroff(curses.A_REVERSE)
-            else:
-                stdscr.addstr(y, x, f' [{i + 1}] {option}' if listing else f' {option}')
+        # set the new Language
+        configLines: list[str] = open(CONFIG_PATH, 'r', encoding='utf-8').readlines()
+        with open(CONFIG_PATH, 'w', encoding='utf-8') as f:
+            for line in configLines:
+                if '"idiom":' in line:
+                    line: str = line.replace(f'"idiom": "{configLines[configLines.index(line)].strip()}"', f'"idiom": "{IDIOM}"')
+                f.write(line)
+                
+    elif opt == options[0]: # show Version
+        print(config['version'])
 
-        stdscr.refresh() # refresh the Console
-        key = stdscr.getch() # idk :v
-
-        # Move|Set the value of option with the Pointer
-        if key in [curses.KEY_UP, 119]: # press W|UP?
-            aim = (aim - 1) % len(options) # move the Pointer
-
-        elif key in [curses.KEY_DOWN, curses.KEY_BACKSPACE, 115]: # press S|SPACE|DOWN?
-            if aim < len(options) - 1:
-                aim += 1 # goto the Down Option
-            else:
-                aim -= len(options) - 1 # goto the Highest Option
-
-        elif key in [curses.KEY_ENTER, ord('\n'), curses.KEY_BTAB]: # press ENTER|TAB?
-            return options[aim]
-        
-        else: # show the error for Invalid Option
-            clear()
-            input(config[IDIOM]['menu-invalidOption'])
-            clear()
-            return draw_menu(options, msg, listing=listing) # try again...
-
-def environment(db, area: str) -> None: # manages the Custom Environments
+def environ_panel(db) -> None: # manages the Custom Environments
+    """ ::Environment Panel Part:: """
+    
+    while div.endswith('/'):
+        div: str = quest.select(lang[IDIOM]['createNewEnv']['message'], db[div])
+    
     # custom Environments of DB
-    if area not in db: # exitin' if Area isn't in the DB
-        print(config[IDIOM]['area-advice'][0], area, config[IDIOM]['area-advice'][1])
+    if div not in db: # exitin' if Area isn't in the DB
+        print(lang[IDIOM]['div']['advice'][0], div, lang[IDIOM]['div']['advice'][1])
         return
     clear()
     
-    section: list[str] = list(db[area].keys()) # goto Area the DB
-    env: str = draw_menu(section) # show the Program Language of DB
-    if env not in db[area]: # exitin' if Program Language isn't in the DB
-        print(config[IDIOM]['lang-advice'][0], env, config[IDIOM]['lang-advice'][1])
+    section: list[str] = list(db[div].keys()) # goto Area the DB
+    env: str = quest.select('', section).ask() # show the Program Language of DB
+    if env not in db[div]: # exitin' if Program Language isn't in the DB
+        print(lang[IDIOM]['lang']['advice'][0], env, lang[IDIOM]['lang']['advice'][1])
         return
     clear()
     
     print(f'\n [+] {env}: ') # show the Program Language as header
-    opt: str = draw_menu(config[IDIOM]['lang-options'], config[IDIOM]['lang-msg']) # show Language Options
+    options: list[str] = lang[IDIOM]['lang']['options']
+    opt: str = quest.select(lang[IDIOM]['lang']['message'], options).ask() # show Language Options
     
-    if opt == config[IDIOM]['lang-options'][0]: # Execute Environment
-        project: str = input(f' [+] Project Name: ') # set the Name of Project
+    if opt == options[0]: # Execute Environment
+        project: str = quest.text(f' Project Name: ', qmark='[+]').ask() # set the Name of Project
         clear()
         mkdir(f'./{project}') # create the Main Project Folder
             
-        for dir in db[area][env]['Dirs']: # create the Dirs of environment
+        for dir in db[div][env]['dirs']: # create the Dirs of environment
             mkdir(f'./{project}/{dir}', exist_ok=True)
                 
-        for file, content in db[area][env]['Files'].items(): # create the Files with its Content of env
+        for file, content in db[div][env]['Files'].items(): # create the Files with its Content of env
             with open( f'./{project}/{file}', 'w', encoding='utf-8') as f:
                 f.write(content)
-    elif opt == config[IDIOM]['lang-options'][1]: # View Environmet
+    
+    elif opt == options[1]: # View Environmet
         clear()
         print(Syntax(
-            json.dumps(db[area][env], ensure_ascii=config['db']['ascii'], indent=config['db']['indent']),
-            lexer='json', theme=config['db']['theme'], line_numbers=config['db']['enlist'], background_color=config['db']['background'])
+            json.dumps(db[div][env], ensure_ascii=config['db']['ascii'], indent=config['db']['indent']),
+            lexer='json', theme=config['db']['theme'], line_numbers=config['db']['list'], background_color=config['db']['background'])
         ) # show the JSON DB File
         input()
 
 # Function:     MAIN FUNCTION
 def main() -> None: # Main Function
     global IDIOM
-    
+
     with open(config['db']['path'], 'r', encoding='utf-8') as f: # get the JSON DataBase File
         db = json.load(f)
         if not db or db == {}: # see if the DB file is Empty
-            print(config[IDIOM]['error']['FileIsVoidWarning'])
-            sys.close(2)
-    section: list[str] = config[IDIOM]['main-options'] + list(db.keys()) # show the Main menu
-    option: str = draw_menu(section)
+            print(lang[IDIOM]['error']['FileIsVoidWarning'])
+            sys.exit(2)
     
-    if option == config[IDIOM]['main-options'][0]: # Exit Option
+    section: list[str] = lang[IDIOM]['main']['options'] + [f'[yellow]{env_sect}[/]' for env_sect in db.keys()] # show the Main menu
+    option: str = quest.select('', section).ask()
+    clear()
+
+    if option == lang[IDIOM]['main']['options'][0]: # Exit Option
         sys.exit(0)
-    elif option == config[IDIOM]['main-options'][1]: # Credits Option
-        clear()
+    elif option == lang[IDIOM]['main']['options'][1]: # Credits Option
         print(f'\n [*] Custom Environment [CEnv]: | {config['version']}v | ~ Sheñey [José Daniel]') # show the Credits
         print(f' [+] Follow Me: ') # show the link to Follow Me
         print(f'     [-] Youtube    | https://www.youtube.com/  |... ')
@@ -149,28 +149,14 @@ def main() -> None: # Main Function
         input('         OK?!')
         clear()
         main()
-    elif option == config[IDIOM]['main-options'][2]: # Config Option
-        clear()
-        opt: str = draw_menu(config[IDIOM]['config-options']) # show Config Options
-        clear()
-        if opt == config[IDIOM]['config-options'][0]: # change Idiom
-            idiome: str = draw_menu(config['lang']) # get the available Languages
-            IDIOM = idiome
-
-            # set the new Language
-            configLines: list[str] = open(CONFIG_PATH, 'r', encoding='utf-8').readlines()
-            with open(CONFIG_PATH, 'w', encoding='utf-8') as f:
-                for line in configLines:
-                    if '"idiom":' in line:
-                        line: str = line.replace(f'"idiom": "{configLines[configLines.index(line)].strip()}"', f'"idiom": "{IDIOM}"')
-                    f.write(line)
+    elif option == lang[IDIOM]['main']['options'][2]: # Config Option
+        config_panel()
         clear()
         main()
-    elif option == config[IDIOM]['main-options'][3]: # New custom environment Option
+    elif option == lang[IDIOM]['main']['options'][3]: # New custom environment Option
+        opt: str = quest.select(lang[IDIOM]['createNewEnv']['message'], lang[IDIOM]['createNewEnv']['options']).ask() # show NewEnv Options
         clear()
-        opt: str = draw_menu(config[IDIOM]['newenv-options']) # show NewEnv Options
-        clear()
-        if opt == config[IDIOM]['newenv-options'][0]: # create a New Custom Environment
+        if opt == lang[IDIOM]['createNewEnv']['options'][0]: # create a New Custom Environment
             area: str = input('\n [+] Program Area: ')
             name: str = input(' [+] Environment Name: ')
             author: str = input(' [+] Author Name: ')
@@ -181,23 +167,20 @@ def main() -> None: # Main Function
             files: list[str] = input(' [+] Files [main.py,icon/favicon.ico]: ').split(',')
             request: list[str] = input(' [+] Dependences: ').split(',')
             clear()
-        elif opt == config[IDIOM]['newenv-options'][1]: # import a Custom Environment
+        elif opt == lang[IDIOM]['createNewEnv']['options'][1]: # import a Custom Environment
             ...
-        elif opt == config[IDIOM]['newenv-options'][2]: # export a Custom Environment
-            fromEnv: str = db[draw_menu(db.keys())].keys()
+        elif opt == lang[IDIOM]['createNewEnv']['options'][2]: # export a Custom Environment
+            fromEnv: str = db[quest.select('', db.keys()).ask()].keys()
             clear()
-            fromEnv: str = draw_menu(fromEnv)
+            fromEnv: str = quest.select('', fromEnv).ask()
             toEnv: str = input(' [+] Name File To: ')
             exportFile = open(toEnv, 'w')
             exportFile.writelines(json.dumps(db[fromEnv], ensure_ascii=config['db']['ascii'], indent=config['db']['indent']))
         clear()
         main()
     else:
-        clear()
-        environment(db, option)
+        environ_panel(db, option)
         input()
-
-    raise KeyboardInterrupt(' Hi')
     clear()
     return
 
@@ -206,17 +189,17 @@ if __name__ == '__main__':
         main()
         sys.exit(0)
     except FileNotFoundError: # InterruptError Code
-        print(config[IDIOM]['error']['FileNotFoundError'])
+        print(lang[IDIOM]['stderr']['FileNotFoundError'])
         with open(config['db']['path'], 'w') as f:
-            json.dump(config['db']['body'], f, indent=config['db']['body'])
+            json.dump(config['db']['bodyDefault'], f, indent=config['db']['bodyDefault'])
     except json.JSONDecodeError: # JSON DB File is void
-        print(config[IDIOM]['error']['JSONDecodeError'])
+        print(lang[IDIOM]['stderr']['JSONDecodeError'])
         with open(config['db']['path'], 'w') as f:
-            json.dump(config['db']['body'], f, indent=config['db']['body'])
+            json.dump(config['db']['bodyDefault'], f, indent=config['db']['bodyDefault'])
     except KeyboardInterrupt: # KeyboardInterrupt Code
-        print(config[IDIOM]['error']['KeyboardInterrupt'])
+        print(lang[IDIOM]['stderr']['KeyboardInterrupt'])
     except Exception as e: # another one Errors
-        print(config[IDIOM]['error']['Raised'][0], e, config[IDIOM]['error']['Raised'][1])
+        print(lang[IDIOM]['stderr']['Raised'][0], e, lang[IDIOM]['stderr']['Raised'][1])
     finally:
         sys.exit(1)
 

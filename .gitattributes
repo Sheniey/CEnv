@@ -1,0 +1,4 @@
+
+# Script Text File with \n After any Line
+*.sh text eol=lf
+*.bat text eol=crlf

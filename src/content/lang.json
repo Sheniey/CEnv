@@ -1,0 +1,113 @@
+{
+    "en": {
+        "stderr": {
+            "FileIsVoidWarning": "\n [yellow bold italic][*] DB Warning: |[/] [yellow dim italic]JSON File is Empty!![/] [yellow bold italic]|... [/]\n",
+            "FileNotFoundError": "\n [red bold][!] DB Error: |[/] [red italic]JSON File not Found. Creating a New One...[/] [red bold]|... [/]\n",
+            "JSONDecodeError": "\n [yellow bold italic][*] DB Warning: |[/] [yellow]JSON File is Empty or Corrupted. Resetting DB...[/] [yellow bold italic]|... [/] \n",
+            "KeyboardInterrupt": "\n [red bold][!] Operation Error: |[/] [red italic]Operation wasn't Completed![/] [red bold]|... [/]\n",
+            "Raised": ["\n [red bold italic][!] Raised Error: |[/][red italic]", "[/] [red bold italic]|... [/]\n"]
+        },
+        "main": {
+            "message": "",
+            "options": [
+                "[red underline italic]Exit[/]", 
+                "[cyan italic]Credits[/]", 
+                "[cyan italic]Config[/]", 
+                "[green bold]New[/]"
+            ],
+            "style": []
+        },
+        "config": {
+            "message": "",
+            "options": [
+                "[green bold]Update[/]",
+                "[cyan italic]Language[/]",
+                "[cyan italic]Version[/]"
+            ],
+            "style": []
+        },
+        "createNewEnviron": [
+            "[green underline italic]Create[/]", 
+            "[blue italic]Import[/]", 
+            "[yellow italic]Export[/]"
+        ],
+        "div": {
+            "message": "",
+            "options": [],
+            "style": [],
+            "advice": [
+                "[yellow bold italic] [-][/] The Program Area [red bold italic]|[/]",
+                "[red bold italic]|[/] [yellow bold italic]isn't Exist...[/] "
+            ]
+        },
+        "lang": {
+            "message": "[green bold italic]What Will You Do?[/]",
+            "options": [
+                "[blue underline italic]Run[/]",
+                "[cyan italic]View[/]"
+            ],
+            "style": [],
+            "advice": [
+                "[yellow bold italic] [-][/] The Program Lenguaje [red bold italic]|[/]",
+                "[red bold italic]|[/] [yellow bold italic]isn't Exist...[/] "
+            ]
+        }
+    },
+    "es": {
+        "stderr": {
+            "FileIsVoidWarning": "\n [yellow bold italic][*] Advertencia BD:[/] | [yellow]Archivo JSON está Vacío!![/] [yellow bold italic]|... [/]\n",
+            "FileNotFoundError": "\n [red bold underline][!] Error BD:[/] | [red italic]Archivo JSON no Encontrado.[/] [ italic]Creando uno Nuevo...[/] [red bold]|... [/]\n",
+            "JSONDecodeError": "\n [yellow bold italic][*] Advertencia BD:[/] | [yellow italic]Archivo JSON está Vacío o Corrupto. Reiniciando BD...[/] [yellow bold italic]| [/]\n",
+            "KeyboardInterrupt": "\n [red bold underline][!] Error Operación:[/] | [red strike italic]Operación no fue Completada![/] [red bold ]|... [/]\n",
+            "Raised": ["\n [red bold italic][!] Error Ocurrido:[/] |[red italic]", "[red bold italic]|[/]... \n"]
+        },
+        "main": {
+            "message": "",
+            "options": [
+                "[red underline italic]Salir[/]", 
+                "[cyan italic]Créditos[/]", 
+                "[cyan italic]Configuración[/]", 
+                "[green bold]Nuevo[/]"
+            ],
+            "style": {}
+        },
+        "config": {
+            "message": "",
+            "options": [
+                "[green bold]Actualizar[/]",
+                "[cyan italic]Idioma[/]",
+                "[cyan italic]Version[/]"
+            ],
+            "style": []
+        },
+        "createNewEnviron": {
+            "message": "",
+            "options": [
+                "[green underline italic]Crear[/]", 
+                "[blue italic]Importar[/]", 
+                "[yellow italic]Exportar[/]"
+            ]
+        },
+        "div": {
+            "message": "",
+            "options": [],
+            "style": [],
+            "advice":[
+                "[yellow bold italic] [-][/] El Área de Programación [red bold italic]|[/]",
+                "[red bold italic]|[/] [yellow bold italic]no Existe...[/] "
+            ]
+        },
+        "lang": {
+            "message": "[green bold underline italic]¿Qué Harás?[/]",
+            "options": [
+                "[blue underline italic]Ejecutar[/]",
+                "[cyan italic]Ver[/]"
+            ],
+            "style": [],
+            "advice": [
+                "[yellow bold italic] [-][/] El Lenguaje de Programación [red bold italic]|[/]",
+                "[red bold italic]|[/] [yellow bold italic]no Existe...[/] "
+            ]
+        }
+    }
+}

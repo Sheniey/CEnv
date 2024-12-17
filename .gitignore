@@ -1,0 +1,18 @@
+
+# Backup Files:
+.config_backup.json
+
+# Python Files:
+updater.py
+lunch.py
+
+# Component Files:
+env2drawio.py
+test/
+
+# Content Files:
+licenses.json
+
+# DB Files:
+# envs.json
+

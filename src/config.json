@@ -1,0 +1,21 @@
+{
+    "db": {
+        "path": "./envs.json",
+        "bodyDefault": "{}",
+        "ansii": true,
+        "list": true,
+        "indent": 2,
+        "theme": "monokai",
+        "background": "black"
+    },
+    "language": {
+        "path": "./src/content/lang.json",
+        "lang": ["en", "es"],
+        "default": "en"
+    },
+    "version": "0.2.2",
+    "idiom": "en",
+    "path": "./",
+    "changelog": true,
+    "docs": true
+}
