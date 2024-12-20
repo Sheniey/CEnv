@@ -2,6 +2,8 @@
 
 # Set the Edition of CEnv
 edition="CEnv CE"
+src=./src
+pathTo=/usr/bin/CEnv/"$edition"
 
 # Ask Which Files CEnv Want to Delete and the Language
 while true;
@@ -87,11 +89,14 @@ fi
 
 echo
 echo " [*] $edition Files:"
-echo "     - cenv.py"
-echo "     - config.json"
-echo "     - envs.json"
-echo "     - README.md"
-echo "     - LICENSE.md"
+echo "     - cenv.py "
+echo "     - config.json "
+echo "     - envs.json "
+echo "     - lang.json "
+echo "     - licenses.json "
+echo "     - links.csv "
+echo "     - README.md "
+echo "     - LICENSE.md "
 [[ "$changelog" == "y" ]] && echo "     - CHANGELOG.md"
 [[ "$docs" == "y" ]] && echo "     - DOCS.md"
 read -n 1 -s -r -p ""
@@ -115,31 +120,31 @@ then
     rm -f ./requirements.txt
 else
     echo " After | Despues"
-    echo " [!] pip3 install -r ~/CEnv/$edition/requirements.txt"
-    mv ./requirements.txt ~/CEnv/$edition/requirements.txt
+    echo " [!] pip3 install -r "$pathTo"/requirements.txt"
+    mv ./requirements.txt "$pathTo"/requirements.txt
     read -n 1 -s -r -p ""
 fi
 
 # Delete the ./init-windows.bat File and ./img Directory
 rm -f ./init-windows.bat
+rm -f ./.gitattributes
+rm -f ./.gitignore
 rm -rf ./img
 
 # Create Directories in /usr/bin
 mkdir -p /usr/bin/CEnv
-mkdir -p /usr/bin/CEnv/"$edition"
+mkdir -p "$pathTo"
 
 # Move the CEnv Files to /usr/bin
-mv -f ./cenv.py /usr/bin/CEnv/"$edition"/ 2>/dev/null
-mv -f ./config.json /usr/bin/CEnv/"$edition"/ 2>/dev/null
-mv -f ./envs.json /usr/bin/CEnv/"$edition"/ 2>/dev/null
-mv -f ./README.md /usr/bin/CEnv/"$edition"/ 2>/dev/null
-mv -f ./LICENSE.md /usr/bin/CEnv/"$edition"/ 2>/dev/null
-[[ "$changelog" == "y" ]] && mv -f ./CHANGELOG.md /usr/bin/CEnv/"$edition"/ 2>/dev/null
-[[ "$docs" == "y" ]] && mv -f ./DOCS.md /usr/bin/CEnv/"$edition"/ 2>/dev/null
+mv -f ./cenv.py "$pathTo"/cenv.py 2>/dev/null
+mv -f ./README.md "$pathTo"/README.md 2>/dev/null
+[[ "$changelog" == "y" ]] && mv -f ./CHANGELOG.md "$pathTo"/CHANGELOG.md 2>/dev/null
+[[ "$docs" == "y" ]] && mv -f "$src"/content/DOCS.md "$pathTo"/src/content/DOCS.md 2>/dev/null
+mv -f "$src" "$pathTo"/src 2>/dev/null
 
 # Delete this File and CEnv Folder, and Enjoy CEnv
 clear
 echo
-echo " [+] Use: cenv ..."
+echo " [+] Use: | cenv |..."
 rm -f ./init-linux.sh
 rm -rf ./"$edition"

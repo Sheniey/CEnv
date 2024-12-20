@@ -24,45 +24,50 @@ clear = console.clear # set the func Clear as console.clear()
 # Definition:   CONST VARIABLES
 CONFIG_PATH: Const[str] = './src/config.json'
 CONFIG_BACKUP_PATH: Const[str] = './src/backup/.config_backup.json'
-LIKS_PATH: Const[str] = './src/content/links.csv'
-backup(CONFIG_PATH, CONFIG_BACKUP_PATH) # create a Config Backup
-with open(CONFIG_PATH, 'r', encoding='utf-8') as f: # get the JSON Config File
-    config = json.load(f)
-    if not config or config == {}: # see if the Config File is Empty
-        print(f'\n [!] Config Error: | JSON File is Empty!! |... ')
-        print(' [*] Using the Config Backup File... ')
-        left: bool = quest.confirm(' Continue... ', qmark='[?]').ask()
-        clear()
-        if left:
-            sys.exit(2)
-        with open(CONFIG_BACKUP_PATH, 'r', encoding='utf-8') as backupFile:
-            configBackup = json.load(backupFile)
-            if not configBackup or configBackup == {}: # see if the Config Backup File is Empty
-                print(f"\n [!] Config Error: | Backup JSON File is Empty!! I'm sorry. |... ")
-                print('     - See the Documentation [DOCS.md] at | https://www.github.com/DOCS.md |... \n')
+LINKS_PATH: Const[str] = './src/content/links.csv'
+
+# Definition:   VARIABLES
+# Maybe
+
+# Initialize:   JSON Files 
+def init() -> tuple:
+    backup(CONFIG_PATH, CONFIG_BACKUP_PATH) # create a Config Backup
+    with open(CONFIG_PATH, 'r', encoding='utf-8') as f: # get the JSON Config File
+        config = json.load(f)
+        if not config or config == {}: # see if the Config File is Empty
+            print(f'\n [!] Config Error: | JSON File is Empty!! |... ')
+            print(' [*] Using the Config Backup File... ')
+            left: bool = quest.confirm(' Continue... ', qmark='[?]').ask()
+            clear()
+            if left:
                 sys.exit(2)
-            else: # Config Backup File load
-                print(f'\n [*] Config Backup: | Config Backup File is Loading... |... ')
-                config = configBackup
-                system(f'cp {CONFIG_BACKUP_PATH} {CONFIG_PATH}')
-                input('\n [+] Completed!! ')
-                clear()
-
-with open(config['language']['path'], 'r', encoding='utf-8') as f: # get the JSON Lang File
-    lang = json.load(f)
-    if not lang or lang == {}: # see if the JSON File is Empty
-        sys.exit(2)
-        clear()
-
+            with open(CONFIG_BACKUP_PATH, 'r', encoding='utf-8') as backupFile:
+                configBackup = json.load(backupFile)
+                if not configBackup or configBackup == {}: # see if the Config Backup File is Empty
+                    print(f"\n [!] Config Error: | Backup JSON File is Empty!! I'm sorry. |... ")
+                    print('     - See the Documentation [DOCS.md] at | https://www.github.com/DOCS.md |... \n')
+                    sys.exit(2)
+                else: # Config Backup File load
+                    print(f'\n [*] Config Backup: | Config Backup File is Loading... |... ')
+                    config = configBackup
+                    system(f'cp {CONFIG_BACKUP_PATH} {CONFIG_PATH}')
+                    input('\n [+] Completed!! ')
+                    clear()
+    with open(config['language']['path'], 'r', encoding='utf-8') as f: # get the JSON Lang File
+        lang = json.load(f)
+        if not lang or lang == {}: # see if the JSON File is Empty
+            sys.exit(2)
+            clear()
+    return config, lang
+config, lang = init()
 IDIOM: str = config.get('idiom', 'en') # get the Idiom
-
 
 # Definition:   FUNCTIONS
 def config_panel() -> None:
     """ ::Configuration Panel Part:: """
     
     clear()
-    options: list[str] = lang[IDIOM]['configOptions']
+    options: list[str] = lang[IDIOM]['config']['options']
     opt: str = quest.select('', '', options).ask() # show Config Options
     clear()
     if opt == options[0]: # change the Language

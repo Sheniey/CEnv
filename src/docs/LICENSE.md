@@ -1,7 +1,7 @@
 
 # GNU General Public License v3 (GPLv3)
 
-Copyright (C) 2024 Sheñey [José Daniel]
+Copyright (C) 2024 [@Sheñey](https://www.github.com/Sheniey) [José Daniel]
 
 The GNU General Public License is a free software license that guarantees end users the freedom to run, study, share, and modify the software. The intent of the license is to ensure that the software remains free and that users' freedoms are preserved.
 

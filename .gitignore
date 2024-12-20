@@ -14,5 +14,5 @@ test/
 licenses.json
 
 # DB Files:
-# envs.json
+./envs.json
 

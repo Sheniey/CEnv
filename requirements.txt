@@ -1,2 +1,2 @@
-curses
+questionary
 rich

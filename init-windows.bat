@@ -2,8 +2,10 @@
 REM Init Batch Program Language
 @echo off
 
-REM Set the Edition of CEnv
+REM Init Variables
 set "edition=CEnv CE"
+set "src=%cd%\src"
+set "pathTo=%USERPROFILE%\AppData\Local\Programs\CEnv\%edition%"
 
 REM Ask Which Files CEnv Want to Delete and the Language
 :while_idiom
@@ -75,7 +77,7 @@ if "%requirements%"=="y" (
     ) else if "%lang%"=="es" (
         echo " [*] Instalaremos Esto: "
     )
-    for /f "tokens=*" %%i in ("%cd%\requirements.txt") do (
+    for /f "tokens=*" %%i in ("%src%\requirements.txt") do (
         echo "     - Python3-%%i"
     )
 )
@@ -84,6 +86,9 @@ echo " [*] %edition% Files: "
 echo "     - cenv.py "
 echo "     - config.json "
 echo "     - envs.json "
+echo "     - lang.json "
+echo "     - licenses.json "
+echo "     - links.csv "
 echo "     - README.md "
 echo "     - LICENSE.md "
 if %changelog%=="y" echo "     - CHANGELOG.md"
@@ -94,7 +99,7 @@ REM Install the Necessary Python Modules
 cls
 echo.
 if "%requirements%"=="y" (
-    pip.exe install -r "%cd%\requirements.txt" || (
+    pip.exe install -r ".\requirements.txt" || (
         if "%lang%"=="en" (
             echo " [!] Error installing Python modules."
         ) else (
@@ -102,36 +107,36 @@ if "%requirements%"=="y" (
         )
         pause
     )
-    if exist "%cd%\requirements.txt" del /f /q "%cd%\requirements.txt"
+    if exist ".\requirements.txt" del /f /q ".\requirements.txt"
 ) else (
     echo " After | Despues"
-    echo " [!] pip install -r %USERPROFILE%\AppData\Local\Programs\CEnv\%edition%\requirements.txt"
-    if exist "%cd%\requirements.txt" move "%cd%\requirements.txt" "%USERPROFILE%\AppData\Local\Programs\CEnv\%edition%\requirements.txt"
+    echo " [!] pip install -r %pathTo%\requirements.txt"
+    if exist ".\requirements.txt" move ".\requirements.txt" "%pathTo%\requirements.txt"
     pause > nul
 )
 cls
 
-REM Delete the .\init-linux.sh File and .\img Directory
+REM Delete the .\init-linux.sh File and .\img Directory, so Somefiles Else
 del /f /q "%cd%\init-linux.sh"
+del /f /q "%cd%\.gitattributes"
+del /f /q "%cd%\.gitignore"
 rmdir /s /q "%cd%\img"
 
 REM Create Directories in AppData\Local\Programs
 mkdir "%USERPROFILE%\AppData\Local\Programs\CEnv"
-mkdir "%USERPROFILE%\AppData\Local\Programs\CEnv\%edition%"
+mkdir "%pathTo%"
 
 REM Move the CEnv Files to AppData\Local\Programs\CEnv\EDITION\cenv.py
-if exist "%cd%\cenv.py" move "%cd%\cenv.py" "%USERPROFILE%\AppData\Local\Programs\CEnv\%edition%"
-if exist "%cd%\config.json" move "%cd%\config.json" "%USERPROFILE%\AppData\Local\Programs\CEnv\%edition%"
-if exist "%cd%\envs.json" move "%cd%\envs.json" "%USERPROFILE%\AppData\Local\Programs\CEnv\%edition%"
-if exist "%cd%\README.md" move "%cd%\README.md" "%USERPROFILE%\AppData\Local\Programs\CEnv\%edition%"
-if exist "%cd%\LICENSE.md" move "%cd%\LICENSE.md" "%USERPROFILE%\AppData\Local\Programs\CEnv\%edition%"
-if "%changelog%"=="y" if exist "%cd%\CHANGELOG.md" move "%cd%\CHANGELOG.md" "%USERPROFILE%\AppData\Local\Programs\CEnv\%edition%"
-if "%docs%"=="y" if exist "%cd%\DOCS.md" move "%cd%\DOCS.md" "%USERPROFILE%\AppData\Local\Programs\CEnv\%edition%"
+if exist "%cd%\cenv.py" move "%cd%\cenv.py" "%pathTo%\cenv.py"
+if exist "%cd%\README.md" move "%cd%\README.md" "%pathTo%\README.md"
+if "%changelog%"=="y" if exist "%cd%\CHANGELOG.md" move "%cd%\CHANGELOG.md" "%pathTo%\CHANGELOG.md"
+if "%docs%"=="y" if exist "%src%\docs\DOCS.md" move "%src%\docs\DOCS.md" "%pathTo%\src\docs\DOCS.md"
+if exist "%src%" move "%src%" "%pathTo%\src"
 
 REM Set a new Path Site for CEnv
-echo %PATH% | findstr /i /c:"%USERPROFILE%\AppData\Local\Programs\CEnv\%edition%" > nul
+echo %PATH% | findstr /i /c:"%pathTo%" > nul
 if errorlevel 1 (
-    setx Path "%Path%;%USERPROFILE%\AppData\Local\Programs\CEnv\%edition%"
+    setx Path "%Path%;%pathTo%"
 )
 
 REM Delete this File and CEnv Folder, and Enjoy CEnv
